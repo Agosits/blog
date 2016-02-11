@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} tag:{{tag.name}}{% endblock %}
+{% block content %}
+	<div class="contianer">
+	  <div class="row">
+	    <div class="col-md-6 col-md-offset-3">
+	    		<h3>{{tag.name}}</h3>
+	    		<hr>
+			{% for id,title in postadict.items %}
+			<a href="/journal/{{id}}" class="list-group-item">{{title}}</a>
+			{% endfor %}
+		</div>
+	  </div>
+	</div>
+
+	
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load myfilter %}
+{% block title %}     blog-index        {% endblock %}
+{% block content %}
+
+    <div class="container">
+    {% if page == 1 %}
+      <div class="text-center">
+        <h1 class="blog-title">blog</h1>
+        <p class="lead blog-description">muyoumingyan</p>
+      </div>
+      <div class="jumbotron">
+        <div class="container">
+          <p> 这是一个django用来练手写出来的博客，有文章、标签、留言功能。作为一个简陋的博客还是能用的。不过基本没有防护和检查提示，就是你格式错了基本没提示。自用而已- -</p>
+		    <br>
+	        <p>另外就是丑了点，因为想学的主要是后端，所以前端能看就行了</p>
+          <hr>
+		      <p class="text-muted">才不说是因为懒</p>
+        </div>
+      </div>
+      {% endif %}
+      <div class="row">
+        
+        <div class="col-sm-8 blog-main">
+          
+              {% for journal in journalist %}
+              <div class="home-post well clearfix">
+              <div class="blog-post">
+                <h2 class="blog-post-title"><a href="journal/{{journal.id}}/">{{journal.title}}</a></h2>
+                <p class="text-muted">{{journal.time|date:"Y-m-d"}} </p>
+                {{journal.content|linebreaksbr }}
+              </div><!-- /.blog-post -->
+              {% for tag in journal.tags|taglist %}
+              {% if tag != "" %}
+              <a href="tag/{{tag}}/" class="btn btn-default" role="button">{{tag}}</a>
+              {% endif %}
+              {% endfor %}
+              </div>
+              {% endfor %}
+
+          
+          
+          <nav>
+            <ul class="pager">
+              <li><a href="page/{{ page|dec }}/">Previous</a></li>
+              <li><a href="page/{{ page|inc }}/">Next</a></li>
+            </ul>
+          </nav>
+          </div>
+
+        <!-- /.blog-main -->
+      
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        {% if request.user.is_authenticated %}
+              <p>
+                 <a href="new_journal" class="btn btn-success btn-lg" role="button">
+                    +new
+                 </a>
+              </p>
+              <a  href="logout"  class="btn btn-primary">logout</a>
+        {% endif %}
+         
+            <a  href="#" data-toggle="modal" data-target="#Modal1" class="btn btn-primary">login</a>
+         
+  <div class="modal fade" id="Modal1" tabindex="-1" role=dialog aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h3 class="modal-title" id="myModalLabel">
+               login
+            </h3>
+         </div>
+
+         <div class="modal-body">
+            <form class="form-horizontal" role="form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">username</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control"  name="username">
+                  </div>
+               
+                
+                  <label class="col-sm-3 control-label">password</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control"  name="password">
+                  </div>               
+                
+                  <div class="col-sm-offset-3 col-sm-9">
+                    <button  type="submit" class="btn btn-default" >submit</button>
+                  </div> 
+                </div>
+              </form>
+         </div>
+
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+              <br>
+              <br>
+              <p>tags:</p>
+              <hr>
+              {% for tag in tlist %}
+                <a href="tag/{{tag.name}}/" class="btn btn-default" role="button">{{tag.name}}</a>
+              {% endfor %}
+        </div>
+        <!-- /.blog-sidebar -->
+        </div>  
+    </div>
+{% endblock %}
+    
+
+
+   
+
