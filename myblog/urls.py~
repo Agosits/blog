@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from journal import views as journal_views
-from selection import views as selection_views
+from selsection import views as selection_views
 from django.contrib.auth.views import login, logout
 
 urlpatterns = [
@@ -34,7 +34,6 @@ urlpatterns = [
 
 urlpatterns += [
     #url(r'^admin/', include(admin.site.urls)),
+    url(r'course^$',selection_views.login_view),
     url(r'^course/main/$',selection_views.main),
-    url(r'^course/login/$',selection_views.login_view),
-    
 ]

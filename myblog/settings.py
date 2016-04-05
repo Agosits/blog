@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'journal',
+    'selection',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,16 +77,38 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'course',
+        'USER':'root',
+        'PASSWORD':'112233',
+        'HOST':'',
+        'PORT':'3306',
+    },
+    'journal': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'journal',
         'USER':'root',
         'PASSWORD':'112233',
         'HOST':'',
         'PORT':'3306',
-    }
+    },
+    'course':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'course',
+        'USER':'root',
+        'PASSWORD':'112233',
+        'HOST':'',
+        'PORT':'3306',
+    },
 }
 
+DATABASE_ROUTERS =['myblog.database_router.DatabaseAppsRouter']
+DATABASE_APPS_MAPPING={
+    'journal':'journal',
+    'selection':'course',
+    'auth':'course',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

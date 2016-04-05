@@ -6,6 +6,7 @@ import datetime
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here
 def logout_view(request):
@@ -15,25 +16,19 @@ def logout_view(request):
 @csrf_protect
 def login_view(request):
     if request.method == 'POST':    
-        f = open('/home/fious/Desktop/test.txt','w')
-        
-        for i,j in request.POST.items():
-            f.write(str(i)+"    :    "+str(j)+"\n")
-        f.close()
-        #return HttpResponse("SPACE OUVER")
         username = request.POST.get('username','')
         password = request.POST.get('password','')
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             auth.login(request,user)
-            return render_to_response('login.html',context_instance=RequestContext(request))
+            return HttpResponse('okay')
         else:
         	  err="failed"
         	  if user == None:
         	  	err="use is none"
         	#  if user.is_staff==False:
         	#	err="user is not staff"
-        	  return render_to_response('login.html',{'err':err},context_instance=RequestContext(request))
+        	  return HttpResponse(err)
     else:
     		return HttpResponse("get ganma,hack zheme haowanma?")
 
@@ -42,7 +37,7 @@ def login_view(request):
 def index(request):
 	if request.method == 'POST':
 		return login_view(request)
-	return render_to_response('index.html',{'journalist':journal.objects.all()[0:9],
+	return render_to_response('index.html',{'journalist':journal.objects.order_by('-id')[0:9],
 										   'tlist':tag.objects.all(),
 										   'page':1},
 										   context_instance=RequestContext(request))
@@ -51,7 +46,7 @@ def show_journal(request,page):
 	max_journal_id=mid.objects.filter(id=1)[0].maxid
 	if (page-1)*10>max_journal_id or page<1 :
 		return HttpResponse("the post page you post is wrong")
-	return render_to_response('index.html',{'journalist':journal.objects.all()[10*(page-1):10*(page-1)+9],
+	return render_to_response('index.html',{'journalist':journal.objects.order_by('-id')[10*(page-1):10*(page-1)+9],
 										   'tlist':tag.objects.all(),
 										   'page':page,})
 def show_tag(request,tagname):
@@ -63,10 +58,11 @@ def show_tag(request,tagname):
 		postadict[j.id] = j.title
 	return render_to_response('tag.html',{'postadict':postadict,
 										'tag':t})
-
+@csrf_protect
+@login_required(login_url='/')
 def new_journal(request):
-	if request.method == 'GET':
-		form = journal_form(request.GET)
+	if request.method == 'POST':
+		form = journal_form(request.POST)
 		if form.is_valid():
 			newj = journal(time=datetime.datetime.now()+datetime.timedelta(hours=8))
 			newj.title = form.cleaned_data['title']
@@ -81,7 +77,7 @@ def new_journal(request):
 				try:
 					x = tag.objects.filter(name=tg)[0]
 				except IndexError:
-					if name != "":
+					if tg != "":
 						newtg = tag(name=tg)
 						newtg.journals=str(max_journal_id+1)
 						newtg.save()
@@ -101,9 +97,9 @@ def new_journal(request):
 			else:
 				return HttpResponse("newjid<=maxid,attention please.")
 		else:
-			return render_to_response('new_journal.html')
+			return HttpResponse("form in not valid")
 	else:
-		 return render_to_response('new_journal.html')
+		 return render_to_response('new_journal.html',context_instance=RequestContext(request))
 
 	
 def journal_content(request,x):
@@ -141,12 +137,13 @@ def init_maxid():
 def init_fious():
 	user = User.objects.create_user(username='fious',password='')
 	user.save()
-
+	
+@login_required
 def test(request):
 	f = open('/home/fious/Desktop/test.txt','w')
 	
 	f.close()
 	
-	return HttpResponse("fious canlie")
+	return HttpResponse("login okay!")
 
 
