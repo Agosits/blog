@@ -820,3 +820,88 @@ WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1770190 pid: 3110
 *** uWSGI is running in multiple interpreter mode ***
 gracefully (RE)spawned uWSGI master process (pid: 3110)
 spawned uWSGI worker 1 (pid: 3853, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Wed Apr  6 10:02:18 2016] ***
+compiled with version: 4.4.7 20120313 (Red Hat 4.4.7-4) on 24 October 2015 19:34:43
+os: Linux-2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013
+nodename: localhost.localdomain
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/fious/blog/myblog
+detected binary path: /home/fious/uwsgi/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/fious/blog/myblog
+your processes number limit is 14733
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8001 fd 3
+Python version: 3.4.2 (default, Oct 18 2015, 15:32:19)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-4)]
+Python main interpreter initialized at 0x9f46b0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145520 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/fious/blog/myblog/ to pythonpath.
+added /home/fious/blog/myblog/myblog/ to pythonpath.
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x9f46b0 pid: 3221 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 3221)
+spawned uWSGI worker 1 (pid: 3223, cores: 1)
+[pid: 3223|app: 0|req: 1/1] 127.0.0.1 () {38 vars in 636 bytes} [Wed Apr  6 02:02:39 2016] GET / => generated 14370 bytes in 603 msecs (HTTP/1.1 200) 4 headers in 224 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 2/2] 127.0.0.1 () {38 vars in 628 bytes} [Wed Apr  6 02:02:40 2016] GET /favicon.ico => generated 3052 bytes in 7 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 3/3] 127.0.0.1 () {38 vars in 658 bytes} [Wed Apr  6 02:02:40 2016] GET /favicon.ico => generated 3052 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 4/4] 127.0.0.1 () {38 vars in 646 bytes} [Wed Apr  6 02:02:45 2016] GET /admin => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 138 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 5/5] 127.0.0.1 () {38 vars in 648 bytes} [Wed Apr  6 02:02:45 2016] GET /admin/ => generated 7285 bytes in 214 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 6/6] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:05:44 2016] GET /admin/ => generated 7285 bytes in 42 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 7/7] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:05:47 2016] GET /admin/ => generated 7285 bytes in 42 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 8/8] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:05:50 2016] GET /admin/ => generated 7285 bytes in 45 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 9/9] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:10:44 2016] GET /admin/ => generated 7285 bytes in 44 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 10/10] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:11:40 2016] GET /admin/ => generated 7285 bytes in 58 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 11/11] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:11:42 2016] GET /admin/ => generated 7285 bytes in 47 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 12/12] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:12:52 2016] GET /admin/ => generated 7285 bytes in 43 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+[pid: 3223|app: 0|req: 13/13] 127.0.0.1 () {40 vars in 703 bytes} [Wed Apr  6 02:13:19 2016] GET /admin/ => generated 7285 bytes in 63 msecs (HTTP/1.1 200) 6 headers in 214 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /home/fious/blog/myblog
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 3 mapped to socket 0 (127.0.0.1:8001)
+running /home/fious/uwsgi/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.11.2 (64bit) on [Wed Apr  6 02:17:32 2016] ***
+compiled with version: 4.4.7 20120313 (Red Hat 4.4.7-4) on 24 October 2015 19:34:43
+os: Linux-2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013
+nodename: localhost.localdomain
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/fious/blog/myblog
+detected binary path: /home/fious/uwsgi/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/fious/blog/myblog
+your processes number limit is 14733
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited INET address 127.0.0.1:8001 fd 3
+Python version: 3.4.2 (default, Oct 18 2015, 15:32:19)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-4)]
+Python main interpreter initialized at 0x11b0050
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145520 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/fious/blog/myblog/ to pythonpath.
+added /home/fious/blog/myblog/myblog/ to pythonpath.
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x11b0050 pid: 3221 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 3221)
+spawned uWSGI worker 1 (pid: 4149, cores: 1)

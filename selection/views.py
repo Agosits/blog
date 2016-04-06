@@ -18,7 +18,10 @@ def login_view(request):
         #return HttpResponse(str(username)+str(password))
         if user is not None and user.is_active:
             auth.login(request,user)
-            return HttpResponseRedirect(nexturl)
+            if nexturl:
+                return HttpResponseRedirect(nexturl)
+            else:
+                return HttpResponseRedirect('/course/main')
         else:
               err="failed,id and password dont't match OR id isn't exist"
               return render_to_response('login.html',{'err':err},context_instance=RequestContext(request))
